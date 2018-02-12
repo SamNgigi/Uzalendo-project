@@ -6,8 +6,8 @@ from datetime import datetime
 
 
 @login_manager.user_loader
-def load_user(user_id):
-    return Community.query.get(int(user_id))
+def load_user(community_id):
+    return Community.query.get(int(community_id))
 
 
 class Community(UserMixin, db.Model):
@@ -40,6 +40,9 @@ class Community(UserMixin, db.Model):
 
 
 class Reports(db.Model):
+
+    __tablename__ = "reports"
+
     id = id.Column(db.Integer, primary_key=True)
     location = db.Column(db.String(255))
     institution = db.Column(db.String(255))
