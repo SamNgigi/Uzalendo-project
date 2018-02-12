@@ -48,7 +48,7 @@ class Reports(db.Model):
     institution = db.Column(db.String(255))
     department = db.Column(db.String(255))
     category = db.Column(db.String(255))
-    type = db.Column(db.String(255))
+    title = db.Column(db.String(255))
     description = db.Column(db.String())
     pic_path = db.Column(db.String)
     video_path = db.Column(db.String)
@@ -62,7 +62,7 @@ class Reports(db.Model):
                  institution,
                  department,
                  category,
-                 type,
+                 title,
                  description,
                  pic_path,
                  video_path,
@@ -75,7 +75,7 @@ class Reports(db.Model):
         self.institution = institution
         self.department = department
         self.category = category
-        self.type = type
+        self.title = title
         self.description = description
         self.pic_path = pic_path
         self.video_path = video_path
