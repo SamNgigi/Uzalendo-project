@@ -11,8 +11,13 @@
     <title>Uzalendo</title>
   </head>
   <body>
+    {% block navbar %}
+      {% include "navbar.html" %}
+    {% endblock %}
+    {% block content %}
     <h1>Uzalendo</h1>
-    <h1>Uzalendo</h1>
+    <h2>Uzalendo</h2>
+    {% endblock %}
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
