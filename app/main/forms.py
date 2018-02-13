@@ -13,7 +13,7 @@ class ReportForm(FlaskForm):
                                       ('procurement', 'Procurement')],
                              validators=[Required()])
 
-    category = RadioField('Type of Institution',
+    category = RadioField('Category of institution',
                           choices=[('private', 'Private'),
                                    ('public', 'Public')],
                           validators=[Required()])
