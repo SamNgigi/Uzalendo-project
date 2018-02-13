@@ -47,8 +47,6 @@ class ReportForm(FlaskForm):
                        validators=[Required()])
 
     description = TextAreaField('Describe Crime', validators=[Required()])
-    upvote = StringField('Upvote', validators=[Required()])
-    downvote = StringField('Downvote', validators=[Required()])
     submit = SubmitField('Submit')
 
 
