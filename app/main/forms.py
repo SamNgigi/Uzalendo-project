@@ -1,12 +1,12 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, SubmitField, SelectField, RadioField
-from flask_wtf.file import FileField, FileRequired, FileAllowed
+# from flask_wtf.file import FileField, FileRequired, FileAllowed
 from wtforms.validators import Required
 
 
 class ReportForm(FlaskForm):
     institution = StringField('Institution Name', validators=[Required()])
-    department = StringField('Department',
+    department = SelectField('Department',
                              choices=[('ict', 'ICT'),
                                       ('finance', 'Finance'),
                                       ('admin', 'Administration'),
