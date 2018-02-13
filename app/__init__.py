@@ -1,16 +1,16 @@
 from flask import Flask
 from flask_bootstrap import Bootstrap
-from flask_uploads import uploadSet,configure_uploads,IMAGES,MEDIA
+from flask_uploads import UploadSet,configure_uploads,IMAGES
 
 bootstrap = Bootstrap()
 photos = UploadSet('photos',IMAGES)
-media  = UploadSet('media', default_dest=videos app: app.instance_root)
+# media  = UploadSet('videos, default_dest=videos)
 
 
 def create_app(config_name):
     app = Flask(__name__)
     # creates apps congifurations
-    app.config.from_object(config_options[config_name])
+    # app.config.from_object(config_options[config_name])
 
     # initialize flask extensions
     bootstrap.init_app(app)
@@ -20,6 +20,6 @@ def create_app(config_name):
     app.register_blueprint(main_blueprint)
 
     # configure UploadSet
-    configure_uploads(app, (photos, media))
+    configure_uploads(app,photos)
 
     return app
