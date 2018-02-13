@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for
 from . import main
-from .form import ReportForm, CommentForm
-from .models import Report, Comments  # Community,
+from .forms import ReportForm, CommentForm
+from ..models import Reports, Comments  # Community,
 from flask_login import login_required, current_user
 from .. import db, photos
 

@@ -17,7 +17,7 @@ class Community(UserMixin, db.Model):
 
     __tablename__ = 'community_members'
 
-    id = id.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(255))
     email = db.Column(db.String(255))
     password_hash = db.Column(db.String(255))
@@ -43,7 +43,7 @@ class Reports(db.Model):
 
     __tablename__ = "reports"
 
-    id = id.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     location = db.Column(db.String(255))
     institution = db.Column(db.String(255))
     department = db.Column(db.String(255))
@@ -55,7 +55,8 @@ class Reports(db.Model):
     upvote = db.Column(db.Integer)
     downvote = db.Column(db.Integer)
     posted = db.Column(db.DateTime, default=datetime.utcnow)
-    community_id = db.Column(db.Integer, db.ForeignKey("community.id"))
+    comment = db.relationship('Comments', backref='report', lazy='dynamic')
+    community_id = db.Column(db.Integer, db.ForeignKey("community_members.id"))
 
     def __init__(self,
                  location,
@@ -100,8 +101,8 @@ class Comments(db.Model):
     id = db.Column(db. Integer, primary_key=True)
     comment = db.Column(db.String(255))
     date_posted = db.Column(db.DateTime, default=datetime.utcnow)
-    community_id = db.Column(db.Integer, db.ForeignKey("community.id"))
-    report_id = db.Column(db.Integer, db.ForeignKey("report.id"))
+    community_id = db.Column(db.Integer, db.ForeignKey("community_members.id"))
+    report_id = db.Column(db.Integer, db.ForeignKey("reports.id"))
 
     def __init__(self, comment, date_posted, community_id):
         self.comment = comment
