@@ -46,7 +46,7 @@ class ReportForm(FlaskForm):
                                                  ('harrasment', 'Harrasment')],
                        validators=[Required()])
 
-    description = TextAreaField('Describe Crime', validators=[Required()])
+    description = TextAreaField('What happed?', validators=[Required()])
     submit = SubmitField('Submit')
 
 

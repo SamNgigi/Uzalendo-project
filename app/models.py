@@ -21,7 +21,6 @@ class Community(UserMixin, db.Model):
     username = db.Column(db.String(255))
     email = db.Column(db.String(255))
     password_hash = db.Column(db.String(255))
-    reports = db.relationship("Reports", backref="users", lazy="dynamic")
     comments = db.relationship("Comments", backref="users")
 
     @property
@@ -56,7 +55,6 @@ class Reports(db.Model):
     downvote = db.Column(db.Integer)
     posted = db.Column(db.DateTime, default=datetime.utcnow)
     comment = db.relationship('Comments', backref='report', lazy='dynamic')
-    community_id = db.Column(db.Integer, db.ForeignKey("community_members.id"))
 
     def __init__(self,
                  location,
@@ -64,12 +62,7 @@ class Reports(db.Model):
                  department,
                  category,
                  title,
-                 description,
-                 video_path,
-                 upvote,
-                 downvote,
-                 posted,
-                 community_id):
+                 description):
 
         self.location = location
         self.institution = institution
@@ -77,11 +70,6 @@ class Reports(db.Model):
         self.category = category
         self.title = title
         self.description = description
-        self.video_path = video_path
-        self.upvote = upvote
-        self.downvote = downvote
-        self.posted = posted
-        self.community_id = community_id
 
         def save_report(self):
             db.session.add(self)

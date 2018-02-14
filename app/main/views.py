@@ -27,21 +27,25 @@ def report():
         category = report_form.category.data
         title = report_form.title.data
         description = report_form.description.data
-        upvote = report_form.downvote.data
-        downvote = report_form.downvote.data
         new_report = Reports(location=location,
                              institution=institution,
                              department=department,
                              category=category,
                              title=title,
-                             description=description,
-                             upvote=upvote,
-                             downvote=downvote)
+                             description=description)
         db.session.add(new_report)
         db.session.commit()
         return redirect(url_for('main.index'))
 
     return render_template('report.html', report_form=report_form)
+
+
+@main.route('/new')
+def new():
+    # TODO: Add voting to this new page. So that comm members can vote.
+    reports = Reports.query.all()
+
+    return render_template('new.html', reports=reports)
 
 
 @main.route('/report/<int:id>', methods=['POST'])

@@ -1,1 +1,10 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as macro %}
+{% block content %}
+<div class="container">
+    <div class="row">
+      {% macro.displayReport(reports) %}
+    </div>
+</div>
 
+{% endblock %}
