@@ -36,15 +36,16 @@
     <div class="row form-check form-check-inline">
       {{report_form.hidden_tag()}} {{report_form.title(class_='form-check-input')}}
     </div>
-    <!-- File uploads -->
-    <div class="custom-file">
-      <input action="{{url_for('main.report')}}" methods="post" type="file" class="custom-file-input" id="customFile" enctype = "multipart/form-data">
-      <label class="custom-file-label" for="customFile">Choose file</label>
-    </div>
     <!--Button  -->
-    <div class="row mt-3">
+    <div class="row">
       {{report_form.submit(class_="btn btn-outline-primary")}}
     </div>
   </form>
+
+  <!-- File uploads -->
+  <div class="custom-file mt-3">
+    <input action="{{url_for('main.report')}}" methods="post" type="file" class="custom-file-input" id="customFile" enctype = "multipart/form-data">
+    <label class="custom-file-label" for="customFile">You can add an image</label>
+  </div>
 </div>
 {% endblock %}

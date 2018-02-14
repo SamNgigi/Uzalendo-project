@@ -65,7 +65,6 @@ class Reports(db.Model):
                  category,
                  title,
                  description,
-                 pic_path,
                  video_path,
                  upvote,
                  downvote,
@@ -78,7 +77,6 @@ class Reports(db.Model):
         self.category = category
         self.title = title
         self.description = description
-        self.pic_path = pic_path
         self.video_path = video_path
         self.upvote = upvote
         self.downvote = downvote

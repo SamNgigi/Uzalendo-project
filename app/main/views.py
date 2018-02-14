@@ -20,11 +20,6 @@ def index():
 def report():
     report_form = ReportForm()
 
-    if 'photo' in request.files:
-        filename = photos.save(request.files['photo'])
-        path = f'photos/{filename}'
-        pic_path = path
-
     if report_form.validate_on_submit():
         location = report_form.location.data
         institution = report_form.institution.data
@@ -41,13 +36,24 @@ def report():
                              title=title,
                              description=description,
                              upvote=upvote,
-                             downvote=downvote,
-                             pic_path=pic_path)
+                             downvote=downvote)
         db.session.add(new_report)
         db.session.commit()
         return redirect(url_for('main.index'))
 
     return render_template('report.html', report_form=report_form)
+
+
+@main.route('/report/<int:id>', methods=['POST'])
+@login_required
+def update_report(id):
+    report = Reports.query.filter_by(id).first()
+    if 'photo' in request.files:
+        filename = photos.save(request.files['photo'])
+        path = f'photos/{filename}'
+        report.pic_path = path
+        db.session.commit()
+    return redirect(url_for('main.new'))
 
 
 @main.route('/comment<int:id>')
