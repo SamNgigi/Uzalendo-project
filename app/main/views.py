@@ -16,7 +16,7 @@ def index():
     return render_template('index.html', reports=reports, test=test)
 
 
-@main.route('/report')
+@main.route('/report', methods=['GET', 'POST'])
 def report():
     report_form = ReportForm()
 
@@ -34,15 +34,15 @@ def report():
         description = report_form.description.data
         upvote = report_form.downvote.data
         downvote = report_form.downvote.data
-        new_report = Report(location=location,
-                            institution=institution,
-                            department=department,
-                            category=category,
-                            title=title,
-                            description=description,
-                            upvote=upvote,
-                            downvote=downvote,
-                            pic_path=pic_path)
+        new_report = Reports(location=location,
+                             institution=institution,
+                             department=department,
+                             category=category,
+                             title=title,
+                             description=description,
+                             upvote=upvote,
+                             downvote=downvote,
+                             pic_path=pic_path)
         db.session.add(new_report)
         db.session.commit()
         return redirect(url_for('main.index'))
@@ -54,7 +54,7 @@ def report():
 @login_required
 def comments(id):
     comment_form = CommentForm()
-    report = Report.query.filter_by(id=id)
+    report = Reports.query.filter_by(id=id)
 
     if comment_form.validate_on_submit():
         comment = comment_form.comment.data

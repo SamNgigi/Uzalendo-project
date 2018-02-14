@@ -24,20 +24,25 @@
     </div>
     <!-- Category -->
     <div class="row mt-3">
-     {{report_form.category.label}}
-   </div>
-   <div class="row form-check form-check-inline ">
-     {{report_form.hidden_tag()}} {{report_form.category(class_='form-check-input')}}
-   </div
+      {{report_form.category.label}}
+    </div>
+    <div class="row form-check form-check-inline ">
+      {{report_form.hidden_tag()}} {{report_form.category(class_='form-check-input')}}
+    </div>
     <!-- Title -->
     <div class="row mt-3">
       {{report_form.title.label}}
     </div>
     <div class="row form-check form-check-inline">
-        {{report_form.hidden_tag()}} {{report_form.title(class_='form-check-input')}}
+      {{report_form.hidden_tag()}} {{report_form.title(class_='form-check-input')}}
+    </div>
+    <!-- File uploads -->
+    <div class="custom-file">
+      <input action="{{url_for('main.report')}}" methods="post" type="file" class="custom-file-input" id="customFile" enctype = "multipart/form-data">
+      <label class="custom-file-label" for="customFile">Choose file</label>
     </div>
     <!--Button  -->
-    <div class="row">
+    <div class="row mt-3">
       {{report_form.submit(class_="btn btn-outline-primary")}}
     </div>
   </form>
