@@ -1,0 +1,160 @@
+{% extends 'base.html' %} {% block body %}
+
+<style>
+  @media screen and (max-width: 1920px) and (min-width: 769px) {
+
+    input {
+      background-color: #337ab7;
+      border: 1px solid #337ab7;
+      color: white;
+      border-radius: 3px;
+      margin-top: 1%;
+      margin-top: 4%;
+    }
+
+    #column_two {
+      border-left: 1px solid rgba(12, 160, 176, 0.5);
+      margin-left: 8%;
+      padding-left: 5%;
+    }
+
+    #column_two a {
+      color: #0ca0b0;
+    }
+    .container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 3.5%;
+      height: 60%;
+      width: 50%;
+      background-color: white;
+      box-shadow: 4px 6px rgba(211, 211, 211, 0.3);
+    }
+
+    .container-fluid {
+      position: absolute;
+      background: whitesmoke;
+      padding-top: 10%;
+      height: 96%;
+      width: 100%;
+
+    }
+
+    .btn {
+      background-color: white;
+      border: 1px solid dodgerblue;
+      color: dodgerblue;
+      margin-top: 3.5%;
+    }
+  }
+
+  @media screen and (max-width: 1920px) and (min-width: 1240px) {
+
+    .container-fluid {
+      height: 90.9%;
+      padding-top: 4%;
+    }
+
+  }
+
+  @media screen and (max-width: 1240px) and (min-width: 769px) {
+
+    .container-fluid {
+      height: 90.9%;
+      padding-top: 10%;
+    }
+
+    .container {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      height: 80%;
+      width: 70%;
+    }
+
+  }
+
+  @media screen and (max-width: 768px) and (min-width: 320px) {
+
+    input {
+      background-color: #337ab7;
+      border: 1px solid #337ab7;
+      color: white;
+      border-radius: 3px;
+      margin-top: 1%;
+      margin-top: 4%;
+    }
+
+    #column_two {
+      border-left: 1px solid rgba(12, 160, 176, 0.5);
+      margin-left: 8%;
+      padding-left: 5%;
+    }
+
+    #column_two a {
+      color: #0ca0b0;
+    }
+
+    .container {
+      position: absolute;
+      padding: 3%;
+      height: 50%;
+      margin-left: 5%;
+      width: 80%;
+      background-color: white;
+      box-shadow: 4px 6px rgba(211, 211, 211, 0.3);
+    }
+
+    .container-fluid {
+      position: absolute;
+      padding-top: 20%;
+      height: 96%;
+      width: 100%;
+
+    }
+
+    .btn {
+      background-color: white;
+      border: 1px solid dodgerblue;
+      color: dodgerblue;
+      margin: 3.5% 0%;
+    }
+  }
+
+  img {
+    border-radius: 50%;
+    border-right: 3px solid #0ca0b0;
+    border-bottom: 3px solid #0ca0b0;
+    height: 110.97px;
+    width: 110.97px;
+    margin-bottom: 4%;
+  }
+</style>
+
+<div class="container-fluid">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-6 col-sm-6 col-md-6">
+
+        {% if user.profile_pic_path %}
+
+        <img src="{{url_for('static', filename = user.profile_pic_path)}}" alt="" class="img-responsive"> {% else %}
+
+        <img src="{{url_for('static', filename = 'imgs/avatar.png')}}" alt="" class="img-thumbnail"> {% endif %}
+
+
+
+      </div>
+      <div class="col-xs-6 col-sm-6 col-md-6">
+        <!-- File uploads -->
+        <div class="custom-file mt-3">
+          <input action="{{url_for('main.report')}}" methods="post" type="file" class="custom-file-input" id="customFile" enctype="multipart/form-data">
+          <label class="custom-file-label" for="customFile">You can add an image</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% endblock %}

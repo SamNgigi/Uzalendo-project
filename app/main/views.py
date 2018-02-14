@@ -16,8 +16,8 @@ def index():
     return render_template('index.html', reports=reports, test=test)
 
 
-@main.route('/report', methods=['GET', 'POST'])
-def report():
+@main.route('/reportForm', methods=['GET', 'POST'])
+def reportForm():
     report_form = ReportForm()
 
     if report_form.validate_on_submit():
@@ -27,25 +27,40 @@ def report():
         category = report_form.category.data
         title = report_form.title.data
         description = report_form.description.data
-        new_report = Reports(location=location,
-                             institution=institution,
-                             department=department,
-                             category=category,
-                             title=title,
-                             description=description)
+        if 'photo' in request.files:
+            filename = photos.save(request.files['photo'])
+            path = f'photos/{filename}'
+            report.pic_path = path
+            db.session.commit()
+            new_report = Reports(location=location,
+                                 institution=institution,
+                                 department=department,
+                                 category=category,
+                                 title=title,
+                                 description=description)
+            db.session.add(new_report)
+            db.session.commit()
+            return redirect(url_for('main.index'))
+        else:
+            new_report = Reports(location=location,
+                                 institution=institution,
+                                 department=department,
+                                 category=category,
+                                 title=title,
+                                 description=description)
         db.session.add(new_report)
         db.session.commit()
         return redirect(url_for('main.index'))
 
-    return render_template('report.html', report_form=report_form)
+    return render_template('reportForm.html', report_form=report_form)
 
 
-@main.route('/new')
-def new():
+@main.route('/reports')
+def report():
     # TODO: Add voting to this new page. So that comm members can vote.
     reports = Reports.query.all()
 
-    return render_template('new.html', reports=reports)
+    return render_template('reports.html', reports=reports)
 
 
 @main.route('/report/<int:id>', methods=['POST'])

@@ -1,0 +1,54 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container">
+  <form action method="post" class='form' role='form'>
+    <!-- institution  -->
+    <div class="row mt-3">
+      {{report_form.institution.label}}
+    </div>
+    <div class="row">
+      {{report_form.hidden_tag()}} {{report_form.institution(class_='form-control', placeholder="Institution Name")}}
+    </div>
+    <!--Department  -->
+    <div class="row mt-3">
+      {{report_form.department.label}}
+    </div>
+    <div class="row">
+      {{report_form.hidden_tag()}} {{report_form.department(class_='custom-select custom-select-lg mb-3l')}}
+    </div>
+    <!-- Location -->
+    <div class="row mt-3">
+      {{report_form.location.label}}
+    </div>
+    <div class="row">
+      {{report_form.hidden_tag()}} {{report_form.location(class_='custom-select custom-select-lg mb-3')}}
+    </div>
+    <!-- Category -->
+    <div class="row mt-3">
+      {{report_form.category.label}}
+    </div>
+    <div class="row form-check form-check-inline ">
+      {{report_form.hidden_tag()}} {{report_form.category(class_='form-check-input')}}
+    </div>
+    <!-- Title -->
+    <div class="row mt-3">
+      {{report_form.title.label}}
+    </div>
+    <div class="row form-check form-check-inline">
+      {{report_form.hidden_tag()}} {{report_form.title(class_='form-check-input')}}
+    </div>
+    <!-- institution  -->
+    <div class="row mt-3">
+      {{report_form.description.label}}
+    </div>
+    <div class="row">
+      {{report_form.hidden_tag()}} {{report_form.description(class_='form-control', placeholder="Describe")}}
+    </div>
+    <!--Button  -->
+    <div class="row mt-3">
+      {{report_form.submit(class_="btn btn-outline-primary")}}
+    </div>
+  </form>
+
+
+</div>
+{% endblock %}
