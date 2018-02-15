@@ -1,18 +1,61 @@
 {% extends 'base.html' %} {% block content %}
-
+{% import 'macros.html' as macro %}
 <div class="container-fluid">
   <!-- Navigation -->
   <ul class="nav nav-tabs nav-justified" role="tablist">
     <li class="nav-item">
-      <a class="nav-link active bttn1" data-toggle="tab" href="#Institution" role="tab">All</a>
+      <a class="nav-link active bttn1" data-toggle="tab" href="#Institution" role="tab">Private</a>
     </li>
     <li class="nav-item tab">
-      <a class="nav-link bttn1" data-toggle="tab" href="#Category" role="tab">People</a>
+      <a class="nav-link bttn1" data-toggle="tab" href="#Category" role="tab">Public</a>
+    </li>
+    <li class="nav-item tab">
+      <a class="nav-link bttn1" data-toggle="tab" href="#Category" role="tab">Recent</a>
     </li>
     <li class="nav-item tab">
       <a class="nav-link bttn1" data-toggle="tab" href="#Nature" role="tab">Type</a>
     </li>
   </ul>
+
+<!-- Information per tab -->
+
+<!--Content  -->
+<div class="tab-content">
+
+  <!-- All -->
+  <div id="All" class="tab-pane">
+    <div class="container">
+      <div class="row">
+      {{macro.displayReport(commercial) }}
+      </div>
+    </div>
+  </div>
+  <!-- People -->
+  <div id="People" class="tab-pane">
+    <div class="container">
+      <div class="row">
+        {{macro.displayReport(government) }}
+      </div>
+    </div>
+  </div>
+  <!-- Nature -->
+  <div id="Nature" class="tab-pane">
+    <div class="container">
+      <div class="row">
+      {{macro.displayReport(recent) }}
+      </div>
+    </div>
+  </div>
+  <!-- Nature -->
+  <div id="Nature" class="tab-pane">
+    <div class="container">
+      <div class="row">
+      {{macro.displayReport(type) }}
+      </div>
+    </div>
+  </div>
+</div>
+
   <!-- Buttons to make a report  -->
 
    <div class="container-fluid mt-5">
@@ -28,7 +71,7 @@
    </div>
 
 </div>
-
+<!-- Report Modal -->
 <div class="modal fade p-4 bg-dark" id="myModal" tabindex="-1" role="dialog" aria-labelledby="reportLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -94,6 +137,10 @@
     </div>
   </div>
 </div>
+
+<!-- Recommendation modal -->
+
+
 
 
 {% endblock %}
