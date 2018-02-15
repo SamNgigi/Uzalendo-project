@@ -51,6 +51,7 @@ class Reports(db.Model):
     description = db.Column(db.String())
     pic_path = db.Column(db.String)
     video_path = db.Column(db.String)
+    verification = db.Column(db.String(255))
     upvote = db.Column(db.Integer)
     downvote = db.Column(db.Integer)
     posted = db.Column(db.DateTime, default=datetime.utcnow)

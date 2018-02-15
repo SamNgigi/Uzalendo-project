@@ -1,1 +1,101 @@
-<h1>{{test}}</h1>
+{% extends 'base.html' %} {% block content %}
+
+<!-- Navigation -->
+<ul class="nav nav-tabs nav-justified" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="#All" role="tab">All</a>
+  </li>
+  <li class="nav-item tab">
+    <a class="nav-link" data-toggle="tab" href="#People" role="tab">People</a>
+  </li>
+  <li class="nav-item tab">
+    <a class="nav-link" data-toggle="tab" href="#Nature" role="tab">Nature</a>
+  </li>
+  <li class="nav-item tab">
+    <a class="nav-link" data-toggle="tab" href="#Architecture" role="tab">Architecture</a>
+  </li>
+</ul>
+<div class="container-fluid mt-2">
+  <p>What to post a pic. Add it <a href="/blog">here</a>.</p>
+</div>
+<!-- Buttons to make a report  -->
+<div class="container">
+  <div class="row">
+    <div class="col-6 flex">
+      <a href="#0" class="bttn" data-toggle="modal" data-target="#myModal">Make Report</a>
+    </div>
+    <div class="col-6 flex dark">
+      <a href="#0" class="bttn-dark">Recommendation</a>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="reportLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="reportLabel">New message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+      </div>
+      <div class="modal-body">
+        <form action method="post" class='form' role='form'>
+          <!-- institution  -->
+          <div class="row mt-3">
+            {{report_form.institution.label}}
+          </div>
+          <div class="row">
+            {{report_form.hidden_tag()}} {{report_form.institution(class_='form-control', placeholder="Institution Name")}}
+          </div>
+          <!--Department  -->
+          <div class="row mt-3">
+            {{report_form.department.label}}
+          </div>
+          <div class="row">
+            {{report_form.hidden_tag()}} {{report_form.department(class_='custom-select custom-select-lg mb-3l')}}
+          </div>
+          <!-- Location -->
+          <div class="row mt-3">
+            {{report_form.location.label}}
+          </div>
+          <div class="row">
+            {{report_form.hidden_tag()}} {{report_form.location(class_='custom-select custom-select-lg mb-3')}}
+          </div>
+          <!-- Category -->
+          <div class="row mt-3">
+            {{report_form.category.label}}
+          </div>
+          <div class="row form-check form-check-inline ">
+            {{report_form.hidden_tag()}} {{report_form.category(class_='form-check-input')}}
+          </div>
+          <!-- Title -->
+          <div class="row mt-3">
+            {{report_form.title.label}}
+          </div>
+          <div class="row form-check form-check-inline">
+            {{report_form.hidden_tag()}} {{report_form.title(class_='form-check-input')}}
+          </div>
+          <!-- institution  -->
+          <div class="row mt-3">
+            {{report_form.description.label}}
+          </div>
+          <div class="row">
+            {{report_form.hidden_tag()}} {{report_form.description(class_='form-control', placeholder="Describe")}}
+          </div>
+          <!--Button  -->
+          <div class="row mt-3">
+            {{report_form.submit(class_="btn btn-outline-primary")}}
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline-secondary" type="button" name="button" data-dismiss="modal">Close</button>
+        <button id="reportSubmit" class="btn btn-outline-primary" type="button" name="button" data-dismiss="modal">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

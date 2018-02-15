@@ -53,3 +53,12 @@ class ReportForm(FlaskForm):
 class CommentForm(FlaskForm):
     comment = TextAreaField('Comment', validators=[Required()])
     submit = SubmitField('Submit')
+
+
+class VerifyForm(FlaskForm):
+    verified = RadioField('Is report true',
+                          choices=[('true', 'verified'),
+                                   ('false', 'unverified')],
+                          default='false',
+                          validators=[Required()])
+    submit = SubmitField('Submit')

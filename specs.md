@@ -6,13 +6,15 @@ TEVIN
 
 VICKY
 - Authenticated users should be able to help approve or verify a report.
-- Community should be able to heat-map a report. Red-really bad, Yellow-Warning, Green-something was done (Results should be displayed to everyone.)
+
 - User should be able to comment or confirm a post and we hide the user identity if they want.
+- User authenticated users should get the report as soon as posted.
+-
 
 SAM
-- User should be able to see service/corruption data from various institutions.
-- User should be able to make a report.
-- User should be able to see outcomes of previous posts. What has been done.
+- User should be able to see service/corruption data from various institutions.                     DONE
+- User should be able to make a report.                                                             DONE
+-.
 
 
 FURTHER EXPLORATION
@@ -20,3 +22,4 @@ FURTHER EXPLORATION
 - Community should be able to heat-map a report. Red-really bad, Yellow-Warning, Green-something was done (Results should be displayed to everyone.)
 - Users should be able to see alternative service providers recommended and approved by others
 - Users should be able to see location of reports.
+- Community should be able to heat-map a report. Red-really bad, Yellow-Warning, Green-something was done (Results should be displayed to everyone.*
