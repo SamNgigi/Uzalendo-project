@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+  <form method="post" class='form' role='form'>
+    <div class="row mt-3">
+      {{registration_form.hidden_tag()}} {{registration_form.email(class_='form-control', placeholder="Enter your email")}}
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="row mt-3">
+      {{registration_form.hidden_tag()}} {{registration_form.username(class_='form-control', placeholder="Username")}}
+    </div>
+    <div class="row mt-3">
+      {{registration_form.hidden_tag()}} {{registration_form.password(class_='form-control', placeholder="Password")}}
+    </div>
+    <div class="row mt-3">
+      {{registration_form.hidden_tag()}} {{registration_form.password_confirm(class_='form-control', placeholder="Confirm Password")}}
+    </div>
+    <div class="row mt-3">
+        {{registration_form.hidden_tag()}}
+        {{registration_form.submit(class_="btn btn-outline-primary")}}
+  </form>
+</div>
+{% endblock %}

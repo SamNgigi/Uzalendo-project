@@ -17,7 +17,7 @@ def register():
         db.session.add(community)
         db.session.commit()
         return redirect(url_for('auth.login'))
-        title = 'Create Account'
+    title = 'Create Account'
     return render_template('auth/register.html',
                            registration_form=form,
                            title=title)
