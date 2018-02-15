@@ -6,7 +6,7 @@ from flask_login import login_required, current_user
 from .. import db, photos
 
 
-@main.route('/')
+@main.route('/', methods=['GET', 'POST'])
 def index():
     """
     This function renders out home page and all its data
@@ -57,42 +57,8 @@ def index():
 
 @main.route('/reportForm', methods=['GET', 'POST'])
 def reportForm():
-    report_form = ReportForm()
 
-    if report_form.validate_on_submit():
-        location = report_form.location.data
-        institution = report_form.institution.data
-        department = report_form.department.data
-        category = report_form.category.data
-        title = report_form.title.data
-        description = report_form.description.data
-        if 'photo' in request.files:
-            filename = photos.save(request.files['photo'])
-            path = f'photos/{filename}'
-            report.pic_path = path
-            db.session.commit()
-            new_report = Reports(location=location,
-                                 institution=institution,
-                                 department=department,
-                                 category=category,
-                                 title=title,
-                                 description=description)
-            db.session.add(new_report)
-            db.session.commit()
-            return redirect(url_for('main.index'))
-        else:
-            new_report = Reports(location=location,
-                                 institution=institution,
-                                 department=department,
-                                 category=category,
-                                 title=title,
-                                 description=description)
-        db.session.add(new_report)
-        db.session.commit()
-        flash('Thank you for posting a report. We wil verify. Visit site to track update on post.')
-        return redirect(url_for('main.index'))
-
-    return redirect(url_for('index') + '#myModal', report_form=report_form)
+    return redirect(url_for('index') + '#myModal')
 
 
 @main.route('/reports', methods=['GET', 'POST'])
