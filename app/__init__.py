@@ -1,27 +1,46 @@
 from flask import Flask
-from flask_bootstrap import Bootstrap
-# from flask_uploads import UploadSet, configure_uploads, IMAGES
+from config import config_options
 from flask_sqlalchemy import SQLAlchemy
+from flask_bootstrap import Bootstrap
+from flask_login import LoginManager
+# from flask_uploads import UploadSet, configure_uploads, IMAGES, patch_request_class
+# from flask_mail import Mail
+# from flask_simplemde import SimpleMDE
+
+login_manager = LoginManager()
+login_manager.session_protection = 'strong'
+login_manager.login_view = 'auth.login'
+
 bootstrap = Bootstrap()
 db = SQLAlchemy()
+# mail = Mail()
 # photos = UploadSet('photos', IMAGES)
-# # media  = UploadSet('videos, default_dest=videos)
+# simple = SimpleMDE()
+# Initializing app
 
 
 def create_app(config_name):
+
+    # Initializing app
     app = Flask(__name__)
-    # creates apps congifurations
-    # app.config.from_object(config_options[config_name])
 
-    # initialize flask extensions
-    bootstrap.init_app(app)
+    # Setting up Config
+    app.config.from_object(config_options[config_name])
+
+    # Initializing flask extension
     db.init_app(app)
+    login_manager.init_app(app)
 
-    # register blueprint
+    # Registering the main blueprint
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
+    # Registering the auth blueprint
+    from .auth import auth as auth_blueprint
+    app.register_blueprint(auth_blueprint, url_prefix='/auth')
 
-    # # configure UploadSet
-    # configure_uploads(app, photos)
+    # configure UploadSet
+    configure_uploads(app, photos)
+    # allows us to set size. Default is 16mb
+    patch_request_class(app)
 
     return app
