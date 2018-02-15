@@ -1,11 +1,11 @@
 from flask import Flask
 from flask_bootstrap import Bootstrap
-from flask_uploads import UploadSet, configure_uploads, IMAGES
+# from flask_uploads import UploadSet, configure_uploads, IMAGES
 from flask_sqlalchemy import SQLAlchemy
 bootstrap = Bootstrap()
 db = SQLAlchemy()
-photos = UploadSet('photos', IMAGES)
-# media  = UploadSet('videos, default_dest=videos)
+# photos = UploadSet('photos', IMAGES)
+# # media  = UploadSet('videos, default_dest=videos)
 
 
 def create_app(config_name):
@@ -21,7 +21,7 @@ def create_app(config_name):
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
 
-    # configure UploadSet
-    configure_uploads(app, photos)
+    # # configure UploadSet
+    # configure_uploads(app, photos)
 
     return app
