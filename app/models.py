@@ -54,7 +54,7 @@ class Reports(db.Model):
     verification = db.Column(db.String(255))
     upvote = db.Column(db.Integer)
     downvote = db.Column(db.Integer)
-    posted = db.Column(db.DateTime, default=datetime.utcnow)
+    posted = db.Column(db.DateTime, default=datetime.now)
     comment = db.relationship('Comments', backref='report', lazy='dynamic')
 
     def __init__(self,
