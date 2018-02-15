@@ -1,8 +1,9 @@
 from flask import render_template, request, redirect, url_for, flash
 from . import main
 from .forms import ReportForm, CommentForm, VerifyForm
-from ..models import Reports, Comments  # Community,
+from ..models import Reports, Comments, Community
 from flask_login import login_required, current_user
+from ..email import mail_message
 from .. import db, photos
 
 
@@ -14,6 +15,7 @@ def index():
     test = "Working"
     reports = Reports.query.all()
     report_form = ReportForm()
+    community = Community.query.all()
 
     if report_form.validate_on_submit():
         location = report_form.location.data
@@ -35,6 +37,9 @@ def index():
                                  description=description)
             db.session.add(new_report)
             db.session.commit()
+            for person in community:
+                mail_message("New Report!", "email/new_report", person.email)
+
             return redirect(url_for('main.index'))
         else:
             new_report = Reports(location=location,
