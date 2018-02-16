@@ -95,6 +95,7 @@ class Recommends(db.Model):
     downvote = db.Column(db.Integer)
     posted = db.Column(db.DateTime, default=datetime.now)
     comment = db.relationship('Comments', backref='report', lazy='dynamic')
+    comment = db.relationship('Comments', backref='recommend', lazy='dynamic')
 
     def __init__(self,
                  location,
@@ -129,6 +130,7 @@ class Comments(db.Model):
     date_posted = db.Column(db.DateTime, default=datetime.utcnow)
     community_id = db.Column(db.Integer, db.ForeignKey("community_members.id"))
     report_id = db.Column(db.Integer, db.ForeignKey("reports.id"))
+    recommend_id = db.Column(db.Integer, db.ForeignKey("recommends.id"))
 
     def __init__(self, comment, date_posted, community_id):
         self.comment = comment
