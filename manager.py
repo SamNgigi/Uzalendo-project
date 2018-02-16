@@ -1,7 +1,7 @@
 from app import create_app, db
 from flask_script import Manager, Server
 from flask_migrate import Migrate, MigrateCommand
-from app.models import Community, Reports, Comments
+from app.models import Community, Reports, Recommends, Comments
 
 # Creating the app instance
 app = create_app('dev')
@@ -30,7 +30,9 @@ def make_shell_context():
     return dict(app=app,
                 db=db,
                 Community=Community,
-                Reports=Reports, Comments=Comments)
+                Reports=Reports,
+                Recommends=Recommends,
+                Comments=Comments)
 
 
 if __name__ == '__main__':

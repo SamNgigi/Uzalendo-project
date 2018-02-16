@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for, flash
 from . import main
-from .forms import ReportForm, CommentForm, VerifyForm
-from ..models import Reports, Comments, Community
+from .forms import ReportForm, CommentForm, VerifyForm, RecommendForm
+from ..models import Reports, Comments, Community, Recommends
 from flask_login import login_required, current_user
 from ..email import mail_message
 from .. import db, photos
@@ -15,6 +15,8 @@ def index():
     test = "Working"
     reports = Reports.query.all()
     report_form = ReportForm()
+    recommends = Recommends.query.all()
+    recommend_form = RecommendForm()
     community = Community.query.all()
 
     if report_form.validate_on_submit():
