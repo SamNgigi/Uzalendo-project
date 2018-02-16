@@ -4,9 +4,9 @@ from flask_migrate import Migrate, MigrateCommand
 from app.models import Community, Reports, Recommends, Comments
 
 # Creating the app instance
-app = create_app('dev')
+# app = create_app('dev')
 # app = create_app('test')
-# app = create_app('prod')
+app = create_app('prod')
 
 manager = Manager(app)
 migrate = Migrate(app, db)
