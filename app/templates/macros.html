@@ -7,11 +7,32 @@
       Category - {{report.category}}
     </div>
     <div class="card-body">
+      <h2 class="card-title">{{report.institution}}</h2>
       <h5 class="card-title">{{report.department}}</h5>
       <p>{{report.type}}</p>
       <p class="card-text">{{report.description}}</p>
       <p class="card-text"><small class="text-muted">{{report.posted}}</small></p>
       <p>Add a comment <a href="/comment/{{report.id}}">here</a>.</p>
+    </div>
+  </div>
+</div>
+{% endfor %} {% endmacro %}
+<!-- Displaying recommends -->
+
+{% macro displayRecommend(recommend_list) %} {% for recommend in recommend_list %}
+<div class="col-xs-6 col-sm-6 col-md-6">
+  <div class="card m-2">
+    <div class="card-header">
+      Category - {{recommend.category}}
+    </div>
+    <div class="card-body">
+      <h2 class="card-title">{{recommend.institution}}</h2>
+      <hr>
+      <h5 class="card-title">{{recommend.department}}</h5>
+      <p>{{recommend.type}}</p>
+      <p class="card-text">{{recommend.description}}</p>
+      <p class="card-text"><small class="text-muted">{{recommend.posted}}</small></p>
+      <p>Add a comment <a href="/comment/{{recommend.id}}">here</a>.</p>
     </div>
   </div>
 </div>

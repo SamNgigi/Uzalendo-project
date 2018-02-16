@@ -96,6 +96,7 @@ def index():
         return redirect(url_for('main.index'))
 
     return render_template('index.html',
+                           recommends=recommends,
                            reports=reports,
                            test=test,
                            recommend_form=recommend_form,
@@ -127,6 +128,21 @@ def report():
         db.session.add(verification)
         db.session.commit()
     return render_template('reports.html', reports=reports, verify=verify)
+
+
+@main.route('/recommends', methods=['GET', 'POST'])
+# @login_required
+def recommends():
+    # TODO: Add voting to this new page. So that comm members can vote.
+    recommends = Recommends.query.all()
+    verify = VerifyForm()
+    # How to add and commit just one property to a class
+    if verify.validate_on_submit():
+        verification = Recommends.query.filter_by(id=id).update(
+            {"verification": verify.verification.data})
+        db.session.add(verification)
+        db.session.commit()
+    return render_template('recommends.html', recommends=recommends, verify=verify)
 
 
 @main.route('/report/<int:id>', methods=['POST'])
