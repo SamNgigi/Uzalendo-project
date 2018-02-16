@@ -1,7 +1,7 @@
 TEVIN  
-- User should be able to see the date that a report was posted.
+- User should be able to see the date that a report was posted.           DONE
 - Users should be able to post videos or pictures to support a report
-- User should be able to receive response that issue is being worked on once reported
+- User should be able to receive response that issue is being worked on once reported       DONE
 
 
 VICKY

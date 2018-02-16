@@ -37,3 +37,28 @@
   </div>
 </div>
 {% endfor %} {% endmacro %}
+
+<!-- Displaying reports index-->
+
+{% macro displayReportTable(report_list) %} {% for report in report_list %}
+<tbody>
+  <tr>
+    <td>{{report.institution}}</td>
+    <td>{{report.department}}</td>
+    <td>{{report.type}}</td>
+    <td>{{report.description}}</td>
+  </tr>
+</tbody>
+{% endfor %} {% endmacro %} {% macro displayRecommendTable(recommend_list) %} {% for recommend in recommend_list %}
+
+<tbody>
+  <tr>
+    <td>{{recommend.institution}}</td>
+    <td>{{recommend.department}}</td>
+    <td>{{recommend.type}}</td>
+    <td>{{recommend.description}}</td>
+  </tr>
+</tbody>
+
+
+{% endfor %} {% endmacro %}

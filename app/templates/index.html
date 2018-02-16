@@ -3,54 +3,94 @@
   <!-- Navigation -->
   <ul class="nav nav-tabs nav-justified" role="tablist">
     <li class="nav-item">
-      <a class="nav-link active bttn1" data-toggle="tab" href="#Institution" role="tab">Private</a>
+      <a class="nav-link active bttn1" data-toggle="tab" href="#Private" role="tab">Private</a>
     </li>
     <li class="nav-item tab">
-      <a class="nav-link bttn1" data-toggle="tab" href="#Category" role="tab">Public</a>
+      <a class="nav-link bttn1" data-toggle="tab" href="#Public" role="tab">Public</a>
     </li>
     <li class="nav-item tab">
-      <a class="nav-link bttn1" data-toggle="tab" href="#Category" role="tab">Recent</a>
+      <a class="nav-link bttn1" data-toggle="tab" href="#Recent" role="tab">Recent</a>
     </li>
     <li class="nav-item tab">
-      <a class="nav-link bttn1" data-toggle="tab" href="#Nature" role="tab">Type</a>
+      <a class="nav-link bttn1" data-toggle="tab" href="#Type" role="tab">Recommendation</a>
     </li>
   </ul>
 
   <!-- Information per tab -->
 
   <!--Content  -->
-  <div class="tab-content">
+  <div class="tab-content mt-3">
 
-    <!-- All -->
-    <div id="All" class="tab-pane">
+    <!-- Private -->
+    <div id="Private" class="tab-pane">
       <div class="container">
-        <div class="row">
-          {{macro.displayReport(commercial) }}
-        </div>
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Insitution</th>
+              <th scope="col">Department</th>
+              <th scope="col">Type</th>
+              <th scope="col">Description</th>
+            </tr>
+          </thead>
+
+              {{macro.displayReportTable(commercial) }}
+        </table>
       </div>
     </div>
-    <!-- People -->
-    <div id="People" class="tab-pane">
+    <!-- Public -->
+    <div id="Public" class="tab-pane">
       <div class="container">
-        <div class="row">
-          {{macro.displayReport(government) }}
-        </div>
+
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Insitution</th>
+              <th scope="col">Department</th>
+              <th scope="col">Type</th>
+              <th scope="col">Description</th>
+            </tr>
+          </thead>
+
+              {{macro.displayReportTable(government) }}
+        </table>
       </div>
     </div>
-    <!-- Nature -->
-    <div id="Nature" class="tab-pane">
+    <!-- Recent -->
+    <div id="Recent" class="tab-pane">
       <div class="container">
-        <div class="row">
-          {{macro.displayReport(recent) }}
-        </div>
+
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Insitution</th>
+              <th scope="col">Department</th>
+              <th scope="col">Type</th>
+              <th scope="col">Description</th>
+            </tr>
+          </thead>
+
+              {{macro.displayReportTable(recent) }}
+        </table>
+
       </div>
     </div>
-    <!-- Nature -->
-    <div id="Nature" class="tab-pane">
+    <!-- Type -->
+    <div id="Type" class="tab-pane">
       <div class="container">
-        <div class="row">
-          {{macro.displayReport(type) }}
-        </div>
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Insitution</th>
+              <th scope="col">Department</th>
+              <th scope="col">Type</th>
+              <th scope="col">Description</th>
+            </tr>
+          </thead>
+
+            {{macro.displayRecommendTable(recommendations) }}
+        </table>
+
       </div>
     </div>
   </div>

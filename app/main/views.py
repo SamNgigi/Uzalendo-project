@@ -19,6 +19,12 @@ def index():
     recommend_form = RecommendForm()
     community = Community.query.all()
 
+# Nav pill display
+    commercial = Reports.query.filter_by(category='private').limit(3).all()
+    government = Reports.query.filter_by(category='public').all()
+    recent = Reports.query.order_by('-id').limit(3).all()
+    recommendations = Recommends.query.order_by('-id').limit(3).all()
+
 # For report
     if report_form.validate_on_submit():
         location = report_form.location.data
@@ -54,7 +60,7 @@ def index():
         db.session.add(new_report)
         db.session.commit()
         flash(
-            'Thank you for posting a report. We wil verify. Visit site to track update on post.')
+            'Thank you for posting a report. We wil verify. Visit site to track update on report.')
         return redirect(url_for('main.index'))
 
 # For recommends
@@ -92,7 +98,7 @@ def index():
         db.session.add(new_recommends)
         db.session.commit()
         flash(
-            'Thank you for posting a report. We wil verify. Visit site to track update on post.')
+            'Thank you for posting a recommendation.')
         return redirect(url_for('main.index'))
 
     return render_template('index.html',
@@ -100,7 +106,11 @@ def index():
                            reports=reports,
                            test=test,
                            recommend_form=recommend_form,
-                           report_form=report_form)
+                           report_form=report_form,
+                           commercial=commercial,
+                           government=government,
+                           recent=recent,
+                           recommendations=recommendations)
 
 
 @main.route('/reportForm', methods=['GET', 'POST'])
