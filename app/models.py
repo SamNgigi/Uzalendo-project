@@ -77,6 +77,45 @@ class Reports(db.Model):
             db.session.commit()
 
 
+class Recommends(db.Model):
+
+    __tablename__ = "recommends"
+
+    id = db.Column(db.Integer, primary_key=True)
+    location = db.Column(db.String(255))
+    institution = db.Column(db.String(255))
+    department = db.Column(db.String(255))
+    category = db.Column(db.String(255))
+    title = db.Column(db.String(255))
+    description = db.Column(db.String())
+    pic_path = db.Column(db.String)
+    video_path = db.Column(db.String)
+    verification = db.Column(db.String(255))
+    upvote = db.Column(db.Integer)
+    downvote = db.Column(db.Integer)
+    posted = db.Column(db.DateTime, default=datetime.now)
+    comment = db.relationship('Comments', backref='report', lazy='dynamic')
+
+    def __init__(self,
+                 location,
+                 institution,
+                 department,
+                 category,
+                 title,
+                 description):
+
+        self.location = location
+        self.institution = institution
+        self.department = department
+        self.category = category
+        self.title = title
+        self.description = description
+
+        def save_report(self):
+            db.session.add(self)
+            db.session.commit()
+
+
 class Comments(db.Model):
     '''
     Comment class that creates instances of Comments class that will be

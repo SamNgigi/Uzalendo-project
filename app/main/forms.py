@@ -10,6 +10,7 @@ class ReportForm(FlaskForm):
                              choices=[('ict', 'ICT'),
                                       ('finance', 'Finance'),
                                       ('admin', 'Administration'),
+                                      ('sales', 'Sales'),
                                       ('procurement', 'Procurement')],
                              validators=[Required()])
 
@@ -47,6 +48,53 @@ class ReportForm(FlaskForm):
                        validators=[Required()])
 
     description = TextAreaField('What happed?', validators=[Required()])
+    submit = SubmitField('Submit')
+
+
+class RecommendForm(FlaskForm):
+    institution = StringField('Institution Name', validators=[Required()])
+    department = SelectField('Department',
+                             choices=[('ict', 'ICT'),
+                                      ('finance', 'Finance'),
+                                      ('admin', 'Administration'),
+                                      ('sales', 'Sales'),
+                                      ('procurement', 'Procurement')],
+                             validators=[Required()])
+
+    category = RadioField('Category of institution',
+                          choices=[('private', 'Private'),
+                                   ('public', 'Public')],
+                          validators=[Required()])
+
+    location = SelectField('Location',
+                           choices=[('westlands', 'Westlands'),
+                                    ('dagorettiN', 'Dagoretti North'),
+                                    ('dagorettiS', 'Dagoretti South'),
+                                    ('langata', 'Langata'),
+                                    ('kibra', 'Kibra'),
+                                    ('roysa', 'Roysambu'),
+                                    ('kasarani', 'Kasarani'),
+                                    ('ruaraka', 'Ruaraka'),
+                                    ('embakasiN', 'Embakasi North'),
+                                    ('embakasiS', 'Embakasi South'),
+                                    ('embakasiC', 'Embakasi Central'),
+                                    ('embakasiE', 'Embakasi East'),
+                                    ('embakasiW', 'Embakasi West'),
+                                    ('makadara', 'Makadara'),
+                                    ('kamkunji', 'Kamkunji'),
+                                    ('starehe', 'Starehe'),
+                                    ('mathare', 'Mathare')],
+                           validators=[Required()])
+
+    title = RadioField('Outstandig', choices=[('integrity', 'Integrity'),
+                                              ('good', 'Great Services'),
+                                              ('speed', 'Speed'),
+                                              ('affordable', 'Affordable'),
+                                              ('quality', 'Excellent quality')],
+                       validators=[Required()])
+
+    description = TextAreaField(
+        'Describe experience?', validators=[Required()])
     submit = SubmitField('Submit')
 
 
