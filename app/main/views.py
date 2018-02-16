@@ -19,6 +19,7 @@ def index():
     recommend_form = RecommendForm()
     community = Community.query.all()
 
+# For report
     if report_form.validate_on_submit():
         location = report_form.location.data
         institution = report_form.institution.data
@@ -56,9 +57,48 @@ def index():
             'Thank you for posting a report. We wil verify. Visit site to track update on post.')
         return redirect(url_for('main.index'))
 
+# For recommends
+    if recommend_form.validate_on_submit():
+        location = recommend_form.location.data
+        institution = recommend_form.institution.data
+        department = recommend_form.department.data
+        category = recommend_form.category.data
+        title = recommend_form.title.data
+        description = report_form.description.data
+        if 'photo' in request.files:
+            filename = photos.save(request.files['photo'])
+            path = f'photos/{filename}'
+            recommends.pic_path = path
+            db.session.commit()
+            new_recommends = Recommends(location=location,
+                                        institution=institution,
+                                        department=department,
+                                        category=category,
+                                        title=title,
+                                        description=description)
+            db.session.add(new_recommends)
+            db.session.commit()
+            for person in community:
+                mail_message("New Report!", "email/new_report", person.email)
+
+            return redirect(url_for('main.index'))
+        else:
+            new_recommends = Recommends(location=location,
+                                        institution=institution,
+                                        department=department,
+                                        category=category,
+                                        title=title,
+                                        description=description)
+        db.session.add(new_recommends)
+        db.session.commit()
+        flash(
+            'Thank you for posting a report. We wil verify. Visit site to track update on post.')
+        return redirect(url_for('main.index'))
+
     return render_template('index.html',
                            reports=reports,
                            test=test,
+                           recommend_form=recommend_form,
                            report_form=report_form)
 
 
@@ -66,6 +106,12 @@ def index():
 def reportForm():
 
     return redirect(url_for('index') + '#myModal')
+
+
+@main.route('/recommendForm', methods=['GET', 'POST'])
+def recommendForm():
+
+    return redirect(url_for('index') + '#myModal2')
 
 
 @main.route('/reports', methods=['GET', 'POST'])
